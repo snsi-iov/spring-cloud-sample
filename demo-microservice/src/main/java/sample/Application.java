@@ -25,6 +25,13 @@ public class Application {
 		return environment.getProperty(q);
 	}
 
+	@RequestMapping("/go")
+	public String query(@RequestParam(value = "a") Integer a, @RequestParam(value = "b") Integer b) {
+		
+        System.out.println("goooooo "+a +"  gooooo "+ b);
+		return "goooooo "+a +"  gooooo "+ b;
+	}
+	
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}

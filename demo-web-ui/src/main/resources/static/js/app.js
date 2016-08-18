@@ -8,4 +8,9 @@ angular.module('users', ['ngRoute']).config(function ($routeProvider) {
     	//alert(data+"");
         $scope.userList = data;
     });
+	$.get('go?a=123&b=456', function (data) {
+    	//alert(data+"");
+        $scope.fooGo = data;
+    });
+	
 });
