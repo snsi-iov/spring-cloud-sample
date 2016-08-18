@@ -12,9 +12,11 @@
         <module>config-microservice</module>
         <module>demo-microservice</module>
         
+        <module>discovery-microservice</module>
+		<module>demo-web-ui</module>
+		
         <!--
         <module>users-microservice</module>
-        <module>discovery-microservice</module>
         <module>api-gateway-microservice</module>
         <module>recommendation-microservice</module>
         <module>hystrix-dashboard</module>

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableAutoConfiguration
-//@EnableDiscoveryClient
+@EnableDiscoveryClient
 @EnableConfigServer
 public class Application {
 	public static void main(String[] args) {
