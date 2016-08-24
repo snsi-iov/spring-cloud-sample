@@ -9,11 +9,13 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>config-microservice</module>
+        <module>configServer</module>
         <module>demo-microservice</module>
+        <module>demo2-microservice</module>
         
-        <module>discovery-microservice</module>
+        <module>eureka</module>
 		<module>demo-web-ui</module>
+		<module>gateway-server</module>
 		
         <!--
         <module>users-microservice</module>
@@ -26,6 +28,36 @@
         -->
     </modules>
 
+	
+	<profiles>
+	
+        <profile>
+            <id>development</id> <!-- 開發中, hostname必須設在/etc/hosts -->
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+            	<filter.mode>development</filter.mode>
+                <log.root.level>ERROR</log.root.level>
+                <log.project.level>DEBUG</log.project.level>
+            </properties>
+        </profile>
+                
+        <profile>
+            <id>production</id> <!-- hostname已用ip取代 -->
+            <activation>
+                <property>
+                    <name>production</name>
+                </property>
+			</activation>
+            <properties> 
+            	<filter.mode>production</filter.mode>
+                <log.root.level>ERROR</log.root.level>
+                <log.project.level>INFO</log.project.level>
+            </properties>
+        </profile>
+	</profiles>
+	
     <parent>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-parent</artifactId>
@@ -54,6 +86,14 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+		    <groupId>commons-io</groupId>
+		    <artifactId>commons-io</artifactId>
+		    <version>2.4</version>
+		</dependency>
+        
     </dependencies>
 
     <dependencyManagement>
@@ -67,6 +107,26 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+	
+	<build>
+		
+        <resources>
+            <resource>
+              <directory>src/main/resources</directory>
+              <filtering>true</filtering>
+            </resource>            
+        </resources>
+   		<testResources>
+		    <testResource>
+              <directory>src/test/resources</directory>
+              <filtering>true</filtering>
+		    </testResource>
+		</testResources>
+
+       	<filters>
+       		<filter>../resource-filter/${filter.mode}.properties</filter>
+       	</filters>
+	</build>
 <!--
     <repositories>
         <repository>
