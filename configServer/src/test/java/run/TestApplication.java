@@ -1,5 +1,5 @@
 
-package sample;
+package run;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import run.Application;
+
 @RestController
 @SpringBootApplication
-public class Application {
+public class TestApplication {
 
 	@Autowired
 	private Environment environment;

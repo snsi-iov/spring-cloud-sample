@@ -1,0 +1,19 @@
+info:
+  component: foobar dev
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          basedir: target/config
+  application:
+    name: foobar
+  jmx:
+    default_domain: cloud.config.server
+server:
+  port: 45172
+management:
+  contextPath: /admin
+foo:
+    bar: dev
+    

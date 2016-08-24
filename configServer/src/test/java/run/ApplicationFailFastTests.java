@@ -1,7 +1,9 @@
-package sample;
+package run;
 
 import org.junit.Test;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+
+import run.TestApplication;
 
 import static org.junit.Assert.*;
 
@@ -11,7 +13,7 @@ public class ApplicationFailFastTests {
 	public void contextFails() {
         try {
             new SpringApplicationBuilder()
-                    .sources(Application.class)
+                    .sources(TestApplication.class)
                     .run("--server.port=0", "--spring.cloud.config.enabled=true", 
                             "--spring.cloud.config.failFast=true",
                             "--spring.cloud.config.uri=http://server-host-doesnt-exist:1234");
