@@ -17,11 +17,18 @@
     </parent>
 
     <properties>
-        <docker.image.prefix>kbastani</docker.image.prefix>
-        <start-class>sample.Application</start-class>
+        <start-class>run.Application</start-class>
     </properties>
 
     <dependencies>
+    
+        <dependency>
+        	<groupId>org.kbastani</groupId>
+    		<artifactId>configServer</artifactId>
+    		<scope>test</scope>
+   			<version>0.1.0</version>
+        </dependency>
+        
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter</artifactId>
@@ -42,6 +49,7 @@
     </dependencies>
 
     <build>
+    	<finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -54,32 +62,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>${docker.plugin.version}</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-                    <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
-                        </resource>
-                    </resources>
-                </configuration>
-            </plugin>
-            -->
         </plugins>
     </build>
 

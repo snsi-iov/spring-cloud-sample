@@ -1,5 +1,5 @@
 
-package sample;
+package run;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -32,6 +32,11 @@ public class Application {
 		return "goooooo "+a +"  gooooo "+ b;
 	}
 	
+	/**
+	 * 使用Dspring.profiles.active來啟用profile, ex: 
+	 * java -jar XXXXXX.jar -Dserver.port=0 -Dspring.profiles.active=development
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}

@@ -1,6 +1,16 @@
+##https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-1.3-Release-Notes#maven-resources-filtering
+## use @xxxxxxx@ instead of ${xxxxxxxx}
+
+
+
+eureka:
+  client:
+    enabled: @eureka.client.enabled@
+  
 spring:
   application:
     name: bar
   cloud:
+    bootstrap.enabled: @spring.cloud.bootstrap.enabled@
     config:
-      uri: http://localhost:${config.port:8888}
+      uri: http://@configServer.host@:@configServer.port@
