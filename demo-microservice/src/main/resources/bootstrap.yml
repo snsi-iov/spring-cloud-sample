@@ -2,15 +2,44 @@
 ## use @xxxxxxx@ instead of ${xxxxxxxx}
 
 
-
-eureka:
-  client:
-    enabled: @eureka.client.enabled@
-  
+## always set app-name and configServer.uri in bootstrap.yml
 spring:
   application:
-    name: bar
+    name: demo-microservice
+   
+   
+---
+########## development ##########
+spring:
+  profiles: development
+  
   cloud:
-    bootstrap.enabled: @spring.cloud.bootstrap.enabled@
     config:
-      uri: http://@configServer.host@:@configServer.port@
+      enabled: false
+      
+eureka:
+  client:
+    enabled: false
+
+
+---
+####### production #########
+spring:
+  profiles: production
+
+  cloud:
+    config:
+      enabled: true
+      server:
+        git:
+          uri: @configServer.git.url@
+          
+eureka:
+  client:
+    enabled: true
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://@eurekaServer.host@:@eurekaServer.port@/eureka/
+      
+       

@@ -1,0 +1,34 @@
+# 請不要改變這個port!!!! 若要改變port, 請在deploy階段修改docker-compose
+
+info:
+  component: demo service
+endpoints:
+  restart:
+    enabled: true
+logging:
+  levels:
+    org.springframework.boot.env.PropertySourcesLoader: TRACE
+    org.springframework.web: DEBUG
+
+
+
+---    
+############# 使用configServer時, 請將以下貼到 '${applicationName}-development.yml', 並放到config-repo #######
+spring:
+    profiles: development
+server:
+    port: 0
+test: 
+    hellow: yoooooooooooooo development
+
+---
+############# 使用configServer時, 請將以下貼到 '${applicationName}-production.yml', 並放到config-repo #######
+spring:
+    profiles: production
+    
+# 請不要改變這個port!!!! 若要改變port, 請在deploy階段修改docker-compose
+server:
+    port: 8080
+
+test:
+    hellow: yoooooooooooooo production
