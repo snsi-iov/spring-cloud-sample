@@ -1,0 +1,14 @@
+#請確認Dockerfile expose port = 8761
+server:
+  port: @eurekaServer.port@
+
+eureka:
+  instance:
+    hostname: eurekaServer
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://@eurekaServer.host@:@eurekaServer.port@/eureka/
+
+spring.cloud.config.discovery.enabled: true

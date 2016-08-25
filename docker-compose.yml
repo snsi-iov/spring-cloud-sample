@@ -1,0 +1,54 @@
+version: '2'
+services:
+
+    eureka:
+        container_name: eureka
+        image: eureka:latest
+        restart: always
+        ports:
+         - "8761:8761"
+         
+        environment:
+         - SPRING_PROFILES_ACTIVE=production
+         
+
+    configserver:
+        image: configserver:latest
+        restart: always
+        ports:
+         - "8888:8888"
+        environment:
+         - SPRING_PROFILES_ACTIVE=production
+        links:
+         - eureka:eurekaServer
+        depends_on: 
+         - eureka
+
+    gateway:
+        image: gateway:latest
+        restart: always
+        ports:
+         - "5555:5555"
+        environment:
+         - SPRING_PROFILES_ACTIVE=production
+        links:
+         - eureka:eurekaServer
+         - configserver:configServer
+        depends_on: 
+         - eureka
+         - configserver
+         
+    demo-microservice:
+        image: demo-microservice:latest
+        restart: always
+        ports:
+         - "8045:8080"
+        environment:
+         - SPRING_PROFILES_ACTIVE=production
+        links:
+         - eureka:eurekaServer
+         - configserver:configServer
+        depends_on: 
+         - eureka
+         - configserver
+        mem_limit: 1G
