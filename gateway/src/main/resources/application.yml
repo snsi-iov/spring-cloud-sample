@@ -1,0 +1,63 @@
+# 這裡的config只套用於app本身
+# ref: http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html
+
+####### development #########
+spring:
+  application:
+    name: gateway
+  profiles: development
+  
+  cloud:
+    config:
+      enabled: false
+      
+eureka:
+  client:
+    enabled: false
+
+zuul:
+  routes:
+    demo:
+        path: /demo/**  
+        serviceId: demo-microservice
+    google:
+        path: /**
+        url: http://www.google.com     
+        
+ribbon:
+  eureka:
+    enabled: false
+
+demo-microservice:
+  ribbon:
+    listOfServers: google.com
+
+---
+####### production #########
+spring:
+  application:
+    name: gateway
+  profiles: production
+
+  cloud:
+    config:
+      enabled: true
+      uri: http://@configServer.host@:@configServer.port@
+          
+eureka:
+  client:
+    enabled: true
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://@eurekaServer.host@:@eurekaServer.port@/eureka/
+      
+zuul:
+  routes:
+    demo:
+        path: /demo/**  
+        serviceId: demo-microservice
+    google:
+        path: /**
+        url: http://www.google.com     
+          

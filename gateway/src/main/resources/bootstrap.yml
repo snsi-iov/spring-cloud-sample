@@ -1,0 +1,6 @@
+server:
+  port: @gateway.port@
+  
+spring:
+  application:
+    name: gateway
