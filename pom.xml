@@ -11,13 +11,13 @@
     <modules>
         <module>configServer</module>
         <module>demo-microservice</module>
-        <module>demo2-microservice</module>
         
         <module>eureka</module>
-		<module>demo-web-ui</module>
-		<module>gateway-server</module>
 		
+		<module>gateway</module>
         <!--
+		<module>demo-web-ui</module>
+        <module>demo2-microservice</module>
         <module>users-microservice</module>
         <module>api-gateway-microservice</module>
         <module>recommendation-microservice</module>
