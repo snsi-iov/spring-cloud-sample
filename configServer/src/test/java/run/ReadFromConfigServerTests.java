@@ -12,7 +12,6 @@ import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.core.env.Environment;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 
 import configserver.utils.RunWithConfigServerAbst;
 
@@ -27,7 +26,6 @@ import configserver.utils.RunWithConfigServerAbst;
 @IntegrationTest({"spring.application.name:foobar", 
    "spring.cloud.config.failFast=true", "spring.cloud.config.enabled=true", "spring.profiles.active=development", 
                             "spring.cloud.config.uri=http://localhost:65341"}) //should read config 'foobar-development.properties'
-@WebAppConfiguration
 public class ReadFromConfigServerTests extends RunWithConfigServerAbst {
 
     @Autowired
@@ -36,7 +34,7 @@ public class ReadFromConfigServerTests extends RunWithConfigServerAbst {
 	public static String configServerPort;
 
 	@Value("${foo.bar}")  //read from config server
-	private String test;
+	private String foobar;
 
 	@Test
 	public void contextLoads() {
@@ -47,7 +45,7 @@ public class ReadFromConfigServerTests extends RunWithConfigServerAbst {
         Assert.assertEquals("foobar dev", this.environment.getProperty("info.component"));
         
         Assert.assertEquals("dev", this.environment.getProperty("foo.bar"));
-        Assert.assertEquals("dev", test);
+        Assert.assertEquals("dev", foobar);
 	}
 
 	
@@ -58,6 +56,6 @@ public class ReadFromConfigServerTests extends RunWithConfigServerAbst {
     
     @BeforeClass
     public static void startConfigServer() throws IOException {
-        configServerPort = startConfigServer_("65341");
+        configServerPort = startConfigServer_("65341", "junit");
     }
 }

@@ -1,19 +1,30 @@
 info:
   component: foobar dev
+  
 spring:
-  cloud:
-    config:
-      server:
-        git:
-          basedir: target/config
+  profiles: development
   application:
     name: foobar
+    
+  cloud:
+    config:
+      enabled: true
+      server:
+        git:
+          uri: https://github.com/snsi-iov/cloud-config-empty.git
+          
   jmx:
     default_domain: cloud.config.server
+      
 server:
   port: 45172
+  
 management:
   contextPath: /admin
+  
 foo:
     bar: dev
     
+eureka:
+  client:
+    enabled: false

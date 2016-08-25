@@ -1,6 +1,2 @@
 server:
   port: @configServer.port@
-  
-spring:
-  application:
-    name: configServer

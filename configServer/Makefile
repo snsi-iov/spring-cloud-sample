@@ -9,7 +9,7 @@
 
 # default IMAGE_NAME = project folder name
 # change this to modify the image name
-IMAGE_NAME=$(notdir $(shell pwd))
+IMAGE_NAME=configserver
 
 # default JAR_NAME = project folder name
 # for adding target/${jarName}.jar into image
@@ -19,7 +19,7 @@ JAR_NAME=$(notdir $(shell pwd)).jar
 
 
 build:
-	mvn clean install
+	mvn clean install -P production
 	
 
 # default build tag = latest

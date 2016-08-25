@@ -30,7 +30,7 @@ public class ApplicationTests extends RunWithConfigServerAbst {
     
     @BeforeClass
     public static void startConfigServer() throws IOException {
-        configServerPort = startConfigServer_();
+        configServerPort = startConfigServer_("development");
     }
 
 }

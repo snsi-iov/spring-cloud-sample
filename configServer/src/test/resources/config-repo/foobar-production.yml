@@ -1,19 +1,32 @@
 info:
   component: foobar production
 spring:
+  profiles: production
   cloud:
     config:
+      enabled: true
       server:
         git:
-          basedir: target/config
+          uri: @configServer.git.url@
+          
   application:
     name: foobar
   jmx:
     default_domain: cloud.config.server
+    
 server:
   port: 8888
+  
 management:
   contextPath: /admin
 foo:
     bar: production
     
+eureka:
+  client:
+    enabled: true
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://@eurekaServer.host@:@eurekaServer.port@/eureka/
+      
