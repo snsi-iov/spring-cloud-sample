@@ -19,7 +19,7 @@ JAR_NAME=$(notdir $(shell pwd)).jar
 
 
 build:
-	mvn clean install
+	mvn clean install -P production
 	
 
 # default build tag = latest
